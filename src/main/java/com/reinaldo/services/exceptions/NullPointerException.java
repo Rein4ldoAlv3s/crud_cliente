@@ -1,6 +1,6 @@
 package com.reinaldo.services.exceptions;
 
-public class NullPointerException extends RuntimeException{
+public class NullPointerException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
@@ -12,5 +12,4 @@ public class NullPointerException extends RuntimeException{
 		super(message);
 	}
 
-	
 }
