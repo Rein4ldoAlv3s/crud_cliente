@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 public class Pessoa implements Serializable{
@@ -16,8 +19,12 @@ public class Pessoa implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@NotEmpty(message = "Nome não pode ser nulo!")
 	private String nome;
+	@CPF
+	@NotEmpty(message = "CPF não pode ser nulo!")
 	private String cpf;
+	@NotEmpty(message = "Telefone não pode ser nulo!")
 	private String telefone;
 
 	public Pessoa() {

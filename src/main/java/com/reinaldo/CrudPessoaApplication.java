@@ -22,8 +22,8 @@ public class CrudPessoaApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		Pessoa p1 = new Pessoa(null, "Reinaldo", "02958859201", "(62) 99573-0262");
-		Pessoa p2 = new Pessoa(null, "Bruna", "95201669385", "(62) 99622-0522");
+		Pessoa p1 = new Pessoa(null, "Reinaldo", "846.706.990-24", "(62) 99573-0262");
+		Pessoa p2 = new Pessoa(null, "Bruna", "744.422.970-88", "(62) 99622-0522");
 		
 		pessoaRepository.saveAll(Arrays.asList(p1,p2));
 		
