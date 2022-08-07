@@ -11,7 +11,7 @@ import com.reinaldo.services.exceptions.NullPointerException;
 public class ResourceExceptionHandler {
 
 	@ExceptionHandler(NullPointerException.class)
-	public ResponseEntity<StandardError> nullPointerException(NullPointerException n){
+	public ResponseEntity<StandardError> nullPointerException(NullPointerException n) {
 		StandardError error = new StandardError(System.currentTimeMillis(), 
 				HttpStatus.NOT_FOUND.value(), n.getMessage());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
