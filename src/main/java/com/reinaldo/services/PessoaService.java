@@ -3,7 +3,10 @@ package com.reinaldo.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.reinaldo.domain.Pessoa;
@@ -28,23 +31,61 @@ public class PessoaService {
 		return repository.findAll();
 	}
 
-	public PessoaDTO create(Pessoa pessoa) {
-		if(findByCPF(pessoa) != null) {
-			throw new DataIntegrityException("CPF já cadastrado na base de dados");
-		}
+	
+
+//	public PessoaDTO create(Pessoa pessoa) {
+//		if(findByCPF(pessoa) != null) {
+//			throw new DataIntegrityException("CPF já cadastrado na base de dados");
+//		}
+//		
+//		Pessoa obj = repository.save(pessoa);
+//		PessoaDTO objDTO = new PessoaDTO(obj);
+//		return objDTO;
+//	}
+//	
+//	
+//	public Pessoa findByCPF(Pessoa p) {
+//		Pessoa obj = repository.findByCPF(p.getCpf());
+//		if(obj == null) {
+//			return null;
+//		}
+//		return obj;
+//	}
+	
+	
+	
+	public PessoaDTO save(Pessoa p) {
+	 	Pessoa objCPF = findByCPF(p.getCpf());
 		
-		Pessoa obj = repository.save(pessoa);
-		PessoaDTO objDTO = new PessoaDTO(obj);
-		return objDTO;
+	 	if(objCPF == null) {
+	 		Pessoa obj = repository.save(p);
+	 		PessoaDTO objDTO = new PessoaDTO(obj);
+	 		return objDTO;
+	 	}
+	 	
+	 	throw new DataIntegrityException("Informe um CPF diferente!");
+		
 	}
 	
-	
-	public Pessoa findByCPF(Pessoa p) {
-		Pessoa obj = repository.findByCPF(p.getCpf());
-		if(obj == null) {
-			return null;
+	public Pessoa findByCPF(String cpf) {
+		Pessoa obj = repository.findByCPF(cpf);
+		
+		if(obj != null) {
+			return obj;
 		}
-		return obj;
+		return null;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

@@ -40,12 +40,36 @@ public class PessoaResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
+//	@PostMapping
+//	public ResponseEntity<PessoaDTO> create(@RequestBody @Valid Pessoa pessoa){
+//		PessoaDTO objDTO = service.create(pessoa);
+//		
+//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+//				.path("/{id}").buildAndExpand(objDTO.getId()).toUri();
+//		return ResponseEntity.created(uri).body(objDTO);
+//	}
+	
+	//Esse path recebe um objeto Pessoa, salva no banco como Pessoa, e retorna um objetoDTO
 	@PostMapping
-	public ResponseEntity<PessoaDTO> create(@RequestBody @Valid Pessoa pessoa){
-		PessoaDTO objDTO = service.create(pessoa);
+	public ResponseEntity<PessoaDTO> save(@RequestBody @Valid Pessoa p){
+		PessoaDTO objDTO = service.save(p);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(objDTO.getId()).toUri();
-		return ResponseEntity.created(uri).body(objDTO);
+		return ResponseEntity.ok().body(objDTO);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
