@@ -31,7 +31,7 @@ public class PessoaService {
 	}
 
 	public PessoaDTO save(Pessoa p) {
-		Pessoa objCPF = findByCPF(p.getCpf());
+		Pessoa objCPF = findByCPF(p);
 
 		if (objCPF == null) {
 			Pessoa obj = repository.save(p);
@@ -46,8 +46,8 @@ public class PessoaService {
 	public Pessoa update(Integer id, @Valid Pessoa pessoaObj) {
 		Pessoa oldObj = findByID(id);
 		
-		if(findByCPF(pessoaObj.getCpf()) != null && findByCPF(pessoaObj.getCpf()).getId() != id) {
-			throw new DataIntegrityException("CPF já cadastrado na base de dados");
+		if(findByCPF(pessoaObj) != null && findByCPF(pessoaObj).getId() != id) {
+			throw new DataIntegrityException("CPF já cadastrado no sistema. Informe um diferente!");
 		}
 		
 		oldObj.setCpf(pessoaObj.getCpf());
@@ -56,8 +56,8 @@ public class PessoaService {
 		return repository.save(oldObj);
 	}
 
-	public Pessoa findByCPF(String cpf) {
-		Pessoa obj = repository.findByCPF(cpf);
+	public Pessoa findByCPF(Pessoa p) {
+		Pessoa obj = repository.findByCPF(p.getCpf());
 
 		if (obj != null) {
 			return obj;

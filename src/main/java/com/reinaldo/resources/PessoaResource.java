@@ -53,7 +53,10 @@ public class PessoaResource {
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<PessoaDTO> update(@PathVariable Integer id, @Valid @RequestBody Pessoa pessoaObj){
-		service.update(id, pessoaObj);
+		PessoaDTO objdDto = new PessoaDTO(service.update(id, pessoaObj));
+		return ResponseEntity.ok().body(objdDto);
 	}
+	
+	
 	
 }
