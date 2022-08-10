@@ -32,28 +32,6 @@ public class PessoaService {
 	}
 
 	
-
-//	public PessoaDTO create(Pessoa pessoa) {
-//		if(findByCPF(pessoa) != null) {
-//			throw new DataIntegrityException("CPF já cadastrado na base de dados");
-//		}
-//		
-//		Pessoa obj = repository.save(pessoa);
-//		PessoaDTO objDTO = new PessoaDTO(obj);
-//		return objDTO;
-//	}
-//	
-//	
-//	public Pessoa findByCPF(Pessoa p) {
-//		Pessoa obj = repository.findByCPF(p.getCpf());
-//		if(obj == null) {
-//			return null;
-//		}
-//		return obj;
-//	}
-	
-	
-	
 	public PessoaDTO save(Pessoa p) {
 	 	Pessoa objCPF = findByCPF(p.getCpf());
 		
@@ -75,17 +53,6 @@ public class PessoaService {
 		}
 		return null;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 }

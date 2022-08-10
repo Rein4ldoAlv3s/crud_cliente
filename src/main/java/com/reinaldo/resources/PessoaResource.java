@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,15 +41,6 @@ public class PessoaResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
-//	@PostMapping
-//	public ResponseEntity<PessoaDTO> create(@RequestBody @Valid Pessoa pessoa){
-//		PessoaDTO objDTO = service.create(pessoa);
-//		
-//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-//				.path("/{id}").buildAndExpand(objDTO.getId()).toUri();
-//		return ResponseEntity.created(uri).body(objDTO);
-//	}
-	
 	//Esse path recebe um objeto Pessoa, salva no banco como Pessoa, e retorna um objetoDTO
 	@PostMapping
 	public ResponseEntity<PessoaDTO> save(@RequestBody @Valid Pessoa p){
@@ -56,20 +48,12 @@ public class PessoaResource {
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(objDTO.getId()).toUri();
-		return ResponseEntity.ok().body(objDTO);
+		return ResponseEntity.created(uri).build();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@PutMapping("/{id}")
+	public ResponseEntity<PessoaDTO> update(@PathVariable Integer id, @Valid @RequestBody Pessoa pessoaObj){
+		service.update(id, pessoaObj);
+	}
 	
 }
