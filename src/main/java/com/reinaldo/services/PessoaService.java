@@ -65,4 +65,12 @@ public class PessoaService {
 		return null;
 	}
 
+	public void delete(Integer id) {
+		Pessoa obj = findByID(id);
+		
+		if(obj != null) {
+			repository.deleteById(id);
+		}
+	}
+
 }
